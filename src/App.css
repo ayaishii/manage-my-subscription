@@ -1,0 +1,4 @@
+.subs-list li {
+  display: flex;
+  gap: 10px;
+}
