@@ -1,0 +1,145 @@
+// Colours
+$green: #84ad47;
+$red: #ad4747;
+$blue: #4784ad;
+
+form {
+  width: 50%;
+  margin: 10% auto;
+  min-width: 9rem;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  max-width: 100%;
+  border: none;
+  margin: 0.5rem 0;
+  padding: 0.5rem 1rem;
+  border-radius: 0.3rem;
+  background: darken(#f9f9f9, 5%);
+  color: darken(#f9f9f9, 80%);
+
+  &[type="submit"] {
+    background: $green;
+    color: #fff;
+    width: auto;
+    float: right;
+  }
+
+  &::placeholder {
+    color: darken(#f9f9f9, 50%);
+  }
+
+  &.error {
+    background: $red;
+    color: #fff;
+    &::placeholder {
+      color: darken($red, 60%);
+    }
+  }
+}
+textarea {
+  height: 10rem;
+}
+.captcha {
+  float: left;
+  input {
+    float: right;
+  }
+  input[name="question"] {
+    width: 4rem;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    text-align: right;
+    padding-right: 0;
+  }
+  [name="captcha"] {
+    width: 5rem;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    padding-left: 0.5rem;
+    &::placeholder {
+      text-align: center;
+    }
+  }
+}
+
+// Generic Styles ;)
+* {
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Open Sans"), local("OpenSans"),
+    url(http://themes.googleusercontent.com/static/fonts/opensans/v7/cJZKeOuBrn4kERxqtaUH3bO3LdcAZYWl9Si6vvxL-qU.woff)
+      format("woff");
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+li {
+  list-style: none;
+}
+
+.container {
+  padding: 0 25px;
+}
+
+button {
+  margin: 0.5rem 0;
+  padding: 10px 12px;
+  width: 100%;
+  border: none;
+  border-radius: 0.3rem;
+  background: #240e86;
+  color: #fff;
+}
+
+.input-price {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+
+  span {
+    margin-left: 0.4rem;
+  }
+}
+
+.sub-item {
+  padding: 12px 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.item-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.item-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.item-info {
+  text-align: right;
+  color: #929292;
+
+  p {
+    font-size: 14px;
+    span {
+      font-size: 18px;
+      font-weight: bold;
+      color: #000;
+    }
+  }
+}
