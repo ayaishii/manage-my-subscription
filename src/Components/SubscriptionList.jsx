@@ -1,7 +1,6 @@
 import { SubscriptionItem } from "./SubscriptionItem";
 
 export const SubscriptionList = ({ subs, onDelete }) => {
-  console.log(subs);
   return (
     <ul>
       {subs.map((sub) => (

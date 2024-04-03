@@ -1,11 +1,20 @@
-export const BillingDateCalculator = ({ onBillingDayChange }) => {
+import { useEffect, useState } from "react";
+
+export const BillingDateCalculator = ({ onBillingDayChange, resetTrigger }) => {
+  const [selectedDay, setSelectedDay] = useState("");
+
+  useEffect(() => {
+    setSelectedDay("");
+  }, [resetTrigger]);
+
+  const handleChange = (e) => {
+    setSelectedDay(e.target.value);
+    onBillingDayChange(e.target.value);
+  };
+
   return (
     <>
-      <select
-        name="billingDay"
-        id="billingDay"
-        onChange={(e) => onBillingDayChange(e.target.value)}
-      >
+      <select name="billingDay" value={selectedDay} onChange={handleChange}>
         <option value="">請求日を選択</option>
         {[...Array(31).keys()].map((day) => (
           <option key={day + 1} value={day + 1}>

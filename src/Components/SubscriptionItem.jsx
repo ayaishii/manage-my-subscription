@@ -1,4 +1,5 @@
 export const SubscriptionItem = ({ sub, onDelete }) => {
+  const handleEdit = (params) => {};
   return (
     <li className="sub-item">
       <div className="item-group">

@@ -7,6 +7,7 @@ export const SubscriptionForm = ({ onAddSubscription }) => {
     cost: "",
     billingDay: "",
   });
+  const [resetTrigger, setResetTrigger] = useState(false);
 
   // 請求日を基に次回請求日を計算する関数
   const calculateNextBillingDate = (billingDay) => {
@@ -65,7 +66,12 @@ export const SubscriptionForm = ({ onAddSubscription }) => {
     onAddSubscription(subscriptionWithNextBilling);
 
     // フォームをリセット
-    setNewSub({ subscription: "", cost: "", billingDay: "" });
+    setNewSub({
+      subscription: "",
+      cost: "",
+      billingDay: "",
+    });
+    setResetTrigger(!resetTrigger);
   };
 
   return (
@@ -87,7 +93,10 @@ export const SubscriptionForm = ({ onAddSubscription }) => {
         <span>円</span>
       </div>
       <div className="input-price">
-        <BillingDateCalculator onBillingDayChange={handleBillingDayChange} />
+        <BillingDateCalculator
+          onBillingDayChange={handleBillingDayChange}
+          resetTrigger={resetTrigger}
+        />
       </div>
       <button type="submit">追加</button>
     </form>
