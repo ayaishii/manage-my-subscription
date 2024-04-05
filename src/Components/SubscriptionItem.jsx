@@ -1,4 +1,4 @@
-export const SubscriptionItem = ({ sub, onDelete }) => {
+export const SubscriptionItem = ({ sub, onDelete, onEdit }) => {
   return (
     <li className="sub-item">
       <div className="item-group">
@@ -12,6 +12,7 @@ export const SubscriptionItem = ({ sub, onDelete }) => {
         </div>
       </div>
       <button onClick={() => onDelete(sub.id)}>削除</button>
+      <button onClick={() => onEdit(sub)}>編集</button>
     </li>
   );
 };

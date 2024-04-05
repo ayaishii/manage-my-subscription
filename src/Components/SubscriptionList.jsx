@@ -1,12 +1,19 @@
 import { SubscriptionItem } from "./SubscriptionItem";
 
-export const SubscriptionList = ({ subs, onDelete }) => {
-  console.log(subs);
+export const SubscriptionList = ({ subs, onDelete, onEdit }) => {
   return (
-    <ul>
-      {subs.map((sub) => (
-        <SubscriptionItem key={sub.id} sub={sub} onDelete={onDelete} />
-      ))}
-    </ul>
+    <>
+      <h2>契約中のサブスク</h2>
+      <ul>
+        {subs.map((sub) => (
+          <SubscriptionItem
+            key={sub.id}
+            sub={sub}
+            onDelete={onDelete}
+            onEdit={onEdit}
+          />
+        ))}
+      </ul>
+    </>
   );
 };

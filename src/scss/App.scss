@@ -4,9 +4,15 @@ $red: #ad4747;
 $blue: #4784ad;
 
 form {
-  width: 50%;
-  margin: 10% auto;
+  margin: 0 auto;
+  margin-bottom: 24px;
   min-width: 9rem;
+}
+
+h1,
+h2,
+h3 {
+  margin-bottom: 1.6rem;
 }
 
 input,
@@ -102,6 +108,17 @@ button {
   border-radius: 0.3rem;
   background: #240e86;
   color: #fff;
+
+  &.close {
+    background-color: #fff;
+    color: #757575;
+    border: 1px solid #ccc;
+  }
+
+  &.add {
+    background-color: unset;
+    color: #3d84ff;
+  }
 }
 
 .input-price {
