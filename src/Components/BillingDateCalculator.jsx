@@ -1,20 +1,25 @@
 import { useEffect, useState } from "react";
 
-export const BillingDateCalculator = ({ onBillingDayChange, resetTrigger }) => {
-  const [selectedDay, setSelectedDay] = useState("");
+export const BillingDateCalculator = ({
+  onBillingDayChange,
+  resetTrigger,
+  selectedDay,
+}) => {
+  const [day, setDay] = useState("");
 
   useEffect(() => {
-    setSelectedDay("");
-  }, [resetTrigger]);
+    // resetTriggerが変更された時、またはselectedDayが更新された時に選択状態を更新する
+    setDay(selectedDay || "");
+  }, [resetTrigger, selectedDay]);
 
   const handleChange = (e) => {
-    setSelectedDay(e.target.value);
+    setDay(e.target.value);
     onBillingDayChange(e.target.value);
   };
 
   return (
     <>
-      <select name="billingDay" value={selectedDay} onChange={handleChange}>
+      <select name="billingDay" value={day} onChange={handleChange}>
         <option value="">請求日を選択</option>
         {[...Array(31).keys()].map((day) => (
           <option key={day + 1} value={day + 1}>
