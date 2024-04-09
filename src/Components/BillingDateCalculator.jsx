@@ -19,14 +19,16 @@ export const BillingDateCalculator = ({
 
   return (
     <>
-      <select name="billingDay" value={day} onChange={handleChange}>
-        <option value="">請求日を選択</option>
-        {[...Array(31).keys()].map((day) => (
-          <option key={day + 1} value={day + 1}>
-            {day + 1}
-          </option>
-        ))}
-      </select>
+      <div className="select-wrapper">
+        <select name="billingDay select" value={day} onChange={handleChange}>
+          <option value="">請求日を選択</option>
+          {[...Array(31).keys()].map((day) => (
+            <option key={day + 1} value={day + 1}>
+              {day + 1}
+            </option>
+          ))}
+        </select>
+      </div>
       <span>日</span>
       {/* 次の請求日を表示する必要がある場合はここに追加 */}
     </>
