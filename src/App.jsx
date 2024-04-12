@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { SubscriptionList } from "./Components/SubscriptionList";
 import { SubscriptionForm } from "./Components/SubscriptionForm";
 import "./scss/reset.scss";
@@ -9,6 +9,28 @@ export const App = () => {
   const [subs, setSubs] = useState([]); // サブスクリプションのリストを保持
   const [isModalOpen, setIsModalOpen] = useState(false); // モーダルの表示状態
   const [editingSub, setEditingSub] = useState(null); // 編集中のサブスクリプション
+  const [totalMoCost, setTotalMoCost] = useState(0); // 毎月の合計金額
+
+  // コンポーネントがマウントされた後にローカルストレージからデータを読み込む
+  useEffect(() => {
+    const storedSubs = localStorage.getItem("subs");
+    if (storedSubs) {
+      setSubs(JSON.parse(storedSubs));
+    }
+  }, []);
+
+  // subs ステートが更新されたらローカルストレージにデータを保存する
+  useEffect(() => {
+    localStorage.setItem("subs", JSON.stringify(subs));
+  }, [subs]);
+
+  useEffect(() => {
+    const totalCost = subs.reduce(
+      (total, sub) => total + parseInt(sub.cost, 10),
+      0
+    );
+    setTotalMoCost(totalCost);
+  }, [subs]);
 
   const handleDelete = (id) => {
     const updatedSubs = subs.filter((sub) => sub.id !== id);
@@ -36,7 +58,13 @@ export const App = () => {
 
   return (
     <div className="container">
-      <h1>サブスク</h1>
+      <div className="sub-summary">
+        <p>毎月の合計</p>
+        <p className="total-cost">
+          <span>￥</span>
+          <span>{totalMoCost}</span>
+        </p>
+      </div>
       <button className="add" onClick={() => openModal()}>
         サブスクを追加
       </button>

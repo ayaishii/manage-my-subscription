@@ -2,11 +2,15 @@
 $green: #84ad47;
 $red: #ad4747;
 $blue: #4784ad;
+$gray-10: #eaeaea;
 
 form {
   margin: 0 auto;
-  margin-bottom: 24px;
   min-width: 9rem;
+
+  .form-group {
+    margin-bottom: 16px;
+  }
 }
 
 h1,
@@ -22,7 +26,7 @@ textarea {
   max-width: 100%;
   border: none;
   margin: 0.5rem 0;
-  padding: 0.5rem 1rem;
+  padding: 0.7rem 1rem;
   border-radius: 0.3rem;
   background: darken(#f9f9f9, 5%);
   color: darken(#f9f9f9, 80%);
@@ -46,6 +50,7 @@ textarea {
     }
   }
 }
+
 textarea {
   height: 10rem;
 }
@@ -92,6 +97,15 @@ input[type="number"]::-webkit-inner-spin-button {
   margin: 0;
 }
 
+.icon {
+  font-size: 20px;
+}
+
+.content-title {
+  font-size: 18px;
+  color: #5a5a5a;
+}
+
 .select {
   appearance: none; /* ① */
   -webkit-appearance: none;
@@ -115,50 +129,95 @@ input[type="number"]::-webkit-inner-spin-button {
   display: inline-block;
 }
 
-.select-wrapper::after {
-  /* ③ */
-  content: "";
-  position: absolute;
-  border: 4px solid #333;
-  border-bottom: 0;
-  border-left-color: transparent;
-  border-right-color: transparent;
-  top: calc(50% - 3px);
-  right: 10px;
-  width: 0;
-  height: 0;
-}
-
-.select-wrapper--disabled::after {
-  border-top-color: #aaa;
-}
-
 li {
   list-style: none;
 }
 
 .container {
+  margin: 40px 0;
   padding: 0 25px;
 }
 
+.dropdown {
+  position: relative;
+  ul {
+    position: absolute;
+    top: 32px;
+    left: -80px;
+    padding: 4px;
+    width: 120px;
+    background-color: white;
+    border-radius: 4px;
+    list-style: none;
+    box-shadow: rgba(15, 15, 15, 0.05) 0px 0px 0px 1px,
+      rgba(15, 15, 15, 0.1) 0px 3px 6px, rgba(15, 15, 15, 0.2) 0px 9px 24px;
+
+    li {
+      button {
+        justify-content: left;
+        width: 100%;
+        padding: 8px 8px;
+        background: none;
+        color: #000;
+        font-size: 15px;
+
+        &:hover {
+          background: $gray-10;
+        }
+
+        svg {
+          margin-right: 8px;
+        }
+      }
+    }
+  }
+}
+
 button {
-  margin: 0.5rem 0;
-  padding: 10px 12px;
-  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 10px 16px;
   border: none;
   border-radius: 0.3rem;
-  background: #240e86;
+  background: #5e46c5;
   color: #fff;
 
-  &.close {
+  &:hover {
+    background: #3d2d85;
+  }
+
+  &.cancel {
+    margin: 0 8px 0 0;
     background-color: #fff;
     color: #757575;
     border: 1px solid #ccc;
+
+    &:hover {
+      background: $gray-10;
+    }
   }
 
   &.add {
+    width: 0 auto;
     background-color: unset;
     color: #3d84ff;
+  }
+
+  &.kebab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 32px;
+    padding: 0;
+    background: #fff;
+    color: #333;
+
+    &:hover {
+      background: $gray-10;
+    }
   }
 }
 
@@ -172,15 +231,67 @@ button {
   }
 }
 
+.sub-summary {
+  display: flex;
+  justify-content: space-between;
+  place-items: center; //中央に寄せる
+  margin-bottom: 40px;
+  padding: 32px 40px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.total-cost {
+  span {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+  }
+}
+
 .sub-item {
-  padding: 12px 16px;
+  margin-bottom: 16px;
+  padding: 12px 12px 20px 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
+
+  .item-category {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+    padding: 6px 8px;
+    font-size: 13px;
+    font-weight: bold;
+    background: #00627d;
+    color: #ffffff;
+    border-radius: 4px;
+  }
+
+  .business {
+    background: #00627d;
+  }
+
+  .learn {
+    background: #4b007d;
+  }
+
+  .entertainment {
+    background: #7d0051;
+  }
+}
+
+.item-header {
+  display: flex;
+  justify-content: space-between;
+  place-items: center;
+  margin-bottom: 8px;
 }
 
 .item-group {
   display: flex;
   justify-content: space-between;
+  place-items: flex-start;
 }
 
 .item-title {
@@ -198,6 +309,10 @@ button {
       font-size: 18px;
       font-weight: bold;
       color: #000;
+    }
+
+    &:first-child {
+      margin-bottom: 12px;
     }
   }
 }

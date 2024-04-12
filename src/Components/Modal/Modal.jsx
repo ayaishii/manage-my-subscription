@@ -8,12 +8,7 @@ export const Modal = ({ isOpen, onClose, children }) => {
     <>
       <div className="modal-wrapper">
         <div className="modal-overlay" onClick={onClose} />
-        <div className="modal-window">
-          {children}
-          <button className="close" onClick={onClose}>
-            閉じる
-          </button>
-        </div>
+        <div className="modal-window">{children}</div>
       </div>
     </>,
     document.getElementById("modal-root")
