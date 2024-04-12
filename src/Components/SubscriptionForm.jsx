@@ -1,6 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
 import { useEffect, useState } from "react";
 import { BillingDateCalculator } from "./BillingDateCalculator";
+import { Category } from "./Category";
 
 export const SubscriptionForm = ({
   initialData = {},
@@ -12,6 +13,7 @@ export const SubscriptionForm = ({
     subscription: "",
     cost: "",
     billingDay: "",
+    category: "",
     id: null, // 編集の際に使用するID
   });
 
@@ -27,6 +29,7 @@ export const SubscriptionForm = ({
       cost: initialData.cost || "",
       billingDay: initialData.billingDay || "",
       nextBillingDate: initialData.nextBillingDate || "",
+      category: initialData.category || "",
       id: initialData.id || null,
     });
   }, [initialData]);
@@ -58,6 +61,13 @@ export const SubscriptionForm = ({
     }));
   };
 
+  const handleCategoryChange = (category) => {
+    setSubscriptionData((prevData) => ({
+      ...prevData,
+      category: category,
+    }));
+  };
+
   const handleBillingDayChange = (day) => {
     setSubscriptionData((prevData) => ({
       ...prevData,
@@ -73,7 +83,8 @@ export const SubscriptionForm = ({
     if (
       !subscriptionData.subscription.trim() ||
       !subscriptionData.cost.trim() ||
-      !subscriptionData.billingDay.trim()
+      !subscriptionData.billingDay.trim() ||
+      !subscriptionData.category.trim()
     ) {
       alert("すべてのフィールドを入力してください");
       return;
@@ -97,6 +108,7 @@ export const SubscriptionForm = ({
       subscription: "",
       cost: "",
       billingDay: "",
+      category: "",
       id: null, // IDをリセット
     });
 
@@ -107,30 +119,45 @@ export const SubscriptionForm = ({
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <input
-          name="subscription"
-          value={subscriptionData.subscription}
-          onChange={handleChange}
-          placeholder="ネットフリックス"
-        />
-        <div className="input-price">
+        <div className="form-group">
           <input
-            name="cost"
-            value={subscriptionData.cost}
+            name="subscription"
+            value={subscriptionData.subscription}
             onChange={handleChange}
-            type="number"
-            placeholder="500"
+            placeholder="サブスクを入力してください"
+            autoComplete="off"
           />
-          <span>円</span>
+          <div className="input-price">
+            <input
+              name="cost"
+              value={subscriptionData.cost}
+              onChange={handleChange}
+              type="number"
+              placeholder="金額を入力してください"
+            />
+            <span>円</span>
+          </div>
+          <div className="input-category">
+            <Category
+              onCategoryChange={handleCategoryChange}
+              resetTrigger={resetTrigger}
+              selectedCategory={subscriptionData.category}
+            />
+          </div>
+          <div className="input-price">
+            <BillingDateCalculator
+              onBillingDayChange={handleBillingDayChange}
+              resetTrigger={resetTrigger}
+              selectedDay={subscriptionData.billingDay}
+            />
+          </div>
         </div>
-        <div className="input-price">
-          <BillingDateCalculator
-            onBillingDayChange={handleBillingDayChange}
-            resetTrigger={resetTrigger}
-            selectedDay={subscriptionData.billingDay}
-          />
+        <div className="modal-button-group">
+          <button type="submit">{subscriptionData.id ? "更新" : "追加"}</button>
+          <button className="cancel" onClick={onClose}>
+            キャンセル
+          </button>
         </div>
-        <button type="submit">{subscriptionData.id ? "更新" : "追加"}</button>
       </form>
     </>
   );

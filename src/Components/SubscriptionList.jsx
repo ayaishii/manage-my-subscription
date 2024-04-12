@@ -3,7 +3,7 @@ import { SubscriptionItem } from "./SubscriptionItem";
 export const SubscriptionList = ({ subs, onDelete, onEdit }) => {
   return (
     <>
-      <h2>契約中のサブスク</h2>
+      <h3 className="content-title">契約中のサブスク</h3>
       <ul>
         {subs.map((sub) => (
           <SubscriptionItem
